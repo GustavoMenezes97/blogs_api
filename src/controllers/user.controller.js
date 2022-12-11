@@ -16,7 +16,16 @@ const getUsers = async (req, res) => {
   res.status(200).json(users);
 };
 
+const getUsersById = async (req, res) => {
+  const id = Number(req.params.id);
+
+  const { status, user, message } = await UserService.getUsersById(id);
+
+  res.status(status).json(status === 200 ? user : { message });
+};
+
 module.exports = {
   registerNewUser,
   getUsers,
+  getUsersById,
 };

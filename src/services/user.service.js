@@ -32,12 +32,23 @@ const registerNewUser = async (displayName, email, password, image) => {
 };
 
 const getUsers = async () => {
-  const users = await User.findAll({ attributes: { exclude: ['password'] } });
+  const users = await User.findAll({ attributes: { exclude: 'password' } });
 
   return users;
+};
+
+const getUsersById = async (id) => {
+  const user = await User.findOne({ where: { id }, attributes: { exclude: 'password' } });
+
+  if (user === null) {
+    return { status: 404, message: 'User does not exist' };
+  }
+
+  return { status: 200, user };
 };
 
 module.exports = {
   registerNewUser,
   getUsers,
+  getUsersById,
 };
