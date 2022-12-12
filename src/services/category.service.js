@@ -10,6 +10,13 @@ const registerNewCategory = async (name) => {
   return { status: 201, newCategory };
 };
 
+const getCategories = async () => {
+  const categories = await Category.findAll();
+
+  return categories;
+};
+
 module.exports = {
   registerNewCategory,
+  getCategories,
 };
