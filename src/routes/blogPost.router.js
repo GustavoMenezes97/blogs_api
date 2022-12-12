@@ -6,4 +6,6 @@ const router = express.Router();
 
 router.get('/', auth, BlogPostController.getBlogPosts);
 
+router.get('/:id', auth, BlogPostController.getBlogPostById);
+
 module.exports = router;
